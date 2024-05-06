@@ -38,5 +38,19 @@ class PhotosController < ApplicationController
       redirect_to("/photos/#{@the_photo.id}", { :alert => "Photo failed to update successfully." })
     end
   end
-  
+
+  def create
+    @photo = Photo.new
+    @photo.image = params.fetch("input_image")
+    @photo.caption = params.fetch("input_caption")
+    @photo.owner_id = params.fetch("input_owner_id")
+
+    if @photo.valid?
+      @photo.save
+      redirect_to("/photos", { :notice => "Photo created successfully." })
+    else
+      redirect_to("/photos", { :notice => "Photo failed to create successfully." })
+    end
+  end
+
 end
