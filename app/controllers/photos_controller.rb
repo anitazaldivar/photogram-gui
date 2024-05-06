@@ -23,4 +23,20 @@ class PhotosController < ApplicationController
     redirect_to("/photos", { :notice => "Photo deleted successfully."} )
     #render({ :template => "photo_templates/delete"})
   end
+
+  def update
+    the_id = params.fetch("path_photo_id")
+    @the_photo = Photo.where({ :id => the_id }).at(0)
+
+    @the_photo.image = params.fetch("query_image")
+    @the_photo.caption = params.fetch("query_caption")
+
+    if @the_photo.valid?
+      @the_photo.save
+      redirect_to("/photos/#{@the_photo.id}", { :notice => "Photo updated successfully."} )
+    else
+      redirect_to("/photos/#{@the_photo.id}", { :alert => "Photo failed to update successfully." })
+    end
+  end
+  
 end

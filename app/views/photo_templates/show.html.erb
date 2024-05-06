@@ -14,7 +14,26 @@
   <dd><%= @the_photo.created_at %></dd>
 
   <dt>Edit photo</dt>
-  <dd>FORM GOES HERE</dd>
+  <dd>
+    <form action="/update_photo/<%= @the_photo.id %>" method="post">
+      <label for="url_box">
+        Image
+      </label>
+
+      <input type="text" id="url_box" name="query_image" value="<%= @the_photo.image %>">
+
+      <label for="caption_box">
+        First name
+      </label>
+
+      <input type="text" id="caption_box" name="query_caption" value="<%= @the_photo.caption %>">
+
+      <button>
+        Update photo
+      </button>
+    </form>
+
+  </dd>
 
   <dt>Delete photo</dt>
   <dd>
