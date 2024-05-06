@@ -16,4 +16,17 @@ class UsersController < ApplicationController
       render({ :template => "user_templates/show"})
     end
   end
+
+  def create
+    @user = User.new
+    @user.username = params.fetch("input_username")
+
+    if @user.valid?
+      @user.save
+      redirect_to("/users", { :notice => "User created successfully." })
+    else
+      redirect_to("/users", { :notice => "User failed to create successfully." })
+    end
+  end
+
 end
