@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   post("/update_photo/:path_photo_id", { :controller => "photos", :action => "update" })
   post("/insert_photo_record", { :controller => "photos", :action => "create" })
 
+  post("/add_comment", { :controller => "photos", :action => "new_comment" })
 end

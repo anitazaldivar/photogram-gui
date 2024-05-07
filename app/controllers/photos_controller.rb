@@ -53,4 +53,21 @@ class PhotosController < ApplicationController
     end
   end
 
+  def new_comment
+    the_id = params.fetch("input_photo_id")
+    @the_photo = Photo.where({ :id => the_id }).at(0)
+
+    comment = Comment.new
+    comment.body = params.fetch("input_comment")
+    comment.author_id = params.fetch("input_author_id")
+    comment.photo_id = params.fetch("input_photo_id")
+
+    if comment.valid?
+      comment.save
+      redirect_to("/photos/#{@the_photo.id}", { :notice => "Comment created successfully."} )
+    else
+      redirect_to("/photos/#{@the_photo.id}", { :alert => "Comment failed to create successfully." })
+    end
+  end
+
 end
