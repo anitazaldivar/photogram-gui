@@ -23,9 +23,9 @@ class UsersController < ApplicationController
 
     if @user.valid?
       @user.save
-      redirect_to("/users", { :notice => "User created successfully." })
+      redirect_to("/users/#{@user.username}", { :notice => "User created successfully." })
     else
-      redirect_to("/users", { :notice => "User failed to create successfully." })
+      redirect_to("/users/#{@user.username}", { :notice => "User failed to create successfully." })
     end
   end
 

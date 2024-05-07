@@ -23,10 +23,9 @@
       <input type="text" id="url_box" name="query_image" value="<%= @the_photo.image %>">
 
       <label for="caption_box">
-        First name
+        Caption
       </label>
-
-      <input type="text" id="caption_box" name="query_caption" value="<%= @the_photo.caption %>">
+      <textarea id="caption_box" name="query_caption" placeholder="Enter a caption for the photo..." ><%= @the_photo.caption %></textarea>
 
       <button>
         Update photo
